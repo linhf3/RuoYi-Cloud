@@ -22,9 +22,9 @@
       <module fileurl="file://$PROJECT_DIR$/ruoyi-modules/ruoyi-gen/ruoyi-modules-gen.iml" filepath="$PROJECT_DIR$/ruoyi-modules/ruoyi-gen/ruoyi-modules-gen.iml" />
       <module fileurl="file://$PROJECT_DIR$/ruoyi-modules/ruoyi-job/ruoyi-modules-job.iml" filepath="$PROJECT_DIR$/ruoyi-modules/ruoyi-job/ruoyi-modules-job.iml" />
       <module fileurl="file://$PROJECT_DIR$/ruoyi-modules/ruoyi-system/ruoyi-modules-system.iml" filepath="$PROJECT_DIR$/ruoyi-modules/ruoyi-system/ruoyi-modules-system.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ruoyi-modules/ruoyi-securities/ruoyi-securities.iml" filepath="$PROJECT_DIR$/ruoyi-modules/ruoyi-securities/ruoyi-securities.iml" />
       <module fileurl="file://$PROJECT_DIR$/ruoyi-visual/ruoyi-visual.iml" filepath="$PROJECT_DIR$/ruoyi-visual/ruoyi-visual.iml" />
       <module fileurl="file://$PROJECT_DIR$/ruoyi-visual/ruoyi-monitor/ruoyi-visual-monitor.iml" filepath="$PROJECT_DIR$/ruoyi-visual/ruoyi-monitor/ruoyi-visual-monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/securities/securities.iml" filepath="$PROJECT_DIR$/securities/securities.iml" />
     </modules>
   </component>
 </project>
