@@ -102,6 +102,16 @@
           v-hasPermi="['securities:securities:export']"
         >导出</el-button>
       </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="warning"
+          plain
+          icon="el-icon-download"
+          size="mini"
+          @click="handleCrawl"
+          v-hasPermi="['securities:securities:crawl']"
+        >爬取</el-button>
+      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -141,7 +151,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -194,7 +204,7 @@
 </template>
 
 <script>
-import { listSecurities, getSecurities, delSecurities, addSecurities, updateSecurities } from "@/api/securities/securities";
+import { listSecurities, getSecurities, delSecurities, addSecurities, updateSecurities, crawl} from "@/api/securities/securities";
 
 export default {
   name: "Securities",
@@ -340,6 +350,13 @@ export default {
       this.download('securities/securities/export', {
         ...this.queryParams
       }, `securities_${new Date().getTime()}.xlsx`)
+    },
+    /** 爬取 */
+    handleCrawl() {
+      crawl().then(response => {
+        this.$modal.msgSuccess("请求成功");
+        this.getList();
+      });
     }
   }
 };

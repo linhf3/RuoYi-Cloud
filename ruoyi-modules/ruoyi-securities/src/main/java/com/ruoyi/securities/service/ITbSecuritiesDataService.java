@@ -2,6 +2,7 @@ package com.ruoyi.securities.service;
 
 import java.util.List;
 import com.ruoyi.securities.domain.TbSecuritiesData;
+import com.ruoyi.securities.vo.SecuritiesFutureVo;
 
 /**
  * 证劵交易Service接口
@@ -58,4 +59,9 @@ public interface ITbSecuritiesDataService
      * @return 结果
      */
     int deleteTbSecuritiesDataById(Long id);
+
+    boolean crawl();
+
+    List<SecuritiesFutureVo> findList();
+
 }

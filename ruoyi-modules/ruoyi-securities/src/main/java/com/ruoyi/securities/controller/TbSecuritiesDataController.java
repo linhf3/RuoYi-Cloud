@@ -3,6 +3,8 @@ package com.ruoyi.securities.controller;
 import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ruoyi.securities.vo.SecuritiesFutureVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -101,5 +103,28 @@ public class TbSecuritiesDataController extends BaseController
     public AjaxResult remove(@PathVariable Long[] ids)
     {
         return toAjax(tbSecuritiesDataService.deleteTbSecuritiesDataByIds(ids));
+    }
+
+    /**
+     * 爬取证劵交易原始数据
+     */
+    @RequiresPermissions("securities:securities:crawl")
+    @Log(title = "证劵交易", businessType = BusinessType.UPDATE)
+    @PostMapping("crawl")
+    public AjaxResult crawl()
+    {
+        return toAjax(tbSecuritiesDataService.crawl());
+    }
+
+    /**
+     * 查询实时期货分析数据
+     */
+    @PostMapping("/findList")
+    //@RequiresPermissions("securities:securities:findList")
+    public TableDataInfo findList()
+    {
+        startPage();
+        List<SecuritiesFutureVo> list = tbSecuritiesDataService.findList();
+        return getDataTable(list);
     }
 }

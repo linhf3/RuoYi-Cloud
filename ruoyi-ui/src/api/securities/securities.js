@@ -42,3 +42,11 @@ export function delSecurities(id) {
     method: 'delete'
   })
 }
+
+// 爬取
+export function crawl() {
+  return request({
+    url: '/securities/securities/crawl',
+    method: 'post'
+  })
+}

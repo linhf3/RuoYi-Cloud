@@ -58,4 +58,18 @@ public interface TbSecuritiesDataMapper
      * @return 结果
      */
     int deleteTbSecuritiesDataByIds(Long[] ids);
+
+    /**
+     * 批量删除证劵交易数据源
+     *
+     * @return 结果
+     */
+    public int deleteAll();
+
+    /**
+     * 批量新增证劵交易数据源
+     *
+     * @return 结果
+     */
+    int insertList(List<TbSecuritiesData> record);
 }

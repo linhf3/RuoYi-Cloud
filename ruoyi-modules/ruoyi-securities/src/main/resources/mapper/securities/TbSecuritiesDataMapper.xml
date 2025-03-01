@@ -98,4 +98,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
+
+    <delete id="deleteAll" parameterType="String">
+        delete from tb_securities_data
+    </delete>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into
+        tb_securities_data (code,name,exchange_code,deviation,type,status,add_user,add_time)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.code},#{item.name},#{item.exchangeCode},#{item.deviation},#{item.type},#{item.status},
+            #{item.addUser},#{item.addTime})
+        </foreach>
+    </insert>
 </mapper>

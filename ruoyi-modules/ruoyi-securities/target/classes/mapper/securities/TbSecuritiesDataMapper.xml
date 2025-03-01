@@ -3,8 +3,8 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.securities.mapper.TbSecuritiesDataMapper">
-    
-    <resultMap type="TbSecuritiesData" id="TbSecuritiesDataResult">
+
+    <resultMap type="com.ruoyi.securities.domain.TbSecuritiesData" id="TbSecuritiesDataResult">
         <result property="id"    column="id"    />
         <result property="code"    column="code"    />
         <result property="name"    column="name"    />
@@ -23,9 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select id, code, name, exchange_code, deviation, undulate, type, status, add_user, add_time, modifier_user, modifier_time from tb_securities_data
     </sql>
 
-    <select id="selectTbSecuritiesDataList" parameterType="TbSecuritiesData" resultMap="TbSecuritiesDataResult">
+    <select id="selectTbSecuritiesDataList" parameterType="com.ruoyi.securities.domain.TbSecuritiesData" resultMap="TbSecuritiesDataResult">
         <include refid="selectTbSecuritiesDataVo"/>
-        <where>  
+        <where>
             <if test="code != null  and code != ''"> and code = #{code}</if>
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
             <if test="deviation != null "> and deviation = #{deviation}</if>
@@ -34,13 +34,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null "> and status = #{status}</if>
         </where>
     </select>
-    
-    <select id="selectTbSecuritiesDataById" parameterType="Long" resultMap="TbSecuritiesDataResult">
+
+    <select id="selectTbSecuritiesDataById" parameterType="java.lang.Long" resultMap="TbSecuritiesDataResult">
         <include refid="selectTbSecuritiesDataVo"/>
         where id = #{id}
     </select>
 
-    <insert id="insertTbSecuritiesData" parameterType="TbSecuritiesData" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertTbSecuritiesData" parameterType="com.ruoyi.securities.domain.TbSecuritiesData" useGeneratedKeys="true" keyProperty="id">
         insert into tb_securities_data
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="code != null">code,</if>
@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateTbSecuritiesData" parameterType="TbSecuritiesData">
+    <update id="updateTbSecuritiesData" parameterType="com.ruoyi.securities.domain.TbSecuritiesData">
         update tb_securities_data
         <trim prefix="SET" suffixOverrides=",">
             <if test="code != null">code = #{code},</if>
@@ -88,14 +88,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </update>
 
-    <delete id="deleteTbSecuritiesDataById" parameterType="Long">
+    <delete id="deleteTbSecuritiesDataById" parameterType="java.lang.Long">
         delete from tb_securities_data where id = #{id}
     </delete>
 
-    <delete id="deleteTbSecuritiesDataByIds" parameterType="String">
+    <delete id="deleteTbSecuritiesDataByIds" parameterType="java.lang.String">
         delete from tb_securities_data where id in 
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>
+
+    <delete id="deleteAll" parameterType="String">
+        delete from tb_securities_data
+    </delete>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into
+        tb_securities_data (code,name,exchange_code,deviation,type,status,add_user,add_time)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.code},#{item.name},#{item.exchangeCode},#{item.deviation},#{item.type},#{item.status},
+            #{item.addUser},#{item.addTime})
+        </foreach>
+    </insert>
 </mapper>
